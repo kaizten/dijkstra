@@ -1,4 +1,4 @@
-# dijkstra
+# Dijkstra
 
 ## Description
 
@@ -18,19 +18,33 @@ Graph rules:
 
 ## Build
 
-No build step is required. Run the script with Python 3:
+This project includes a `requirements.txt` file with the Python dependencies.
+Create a virtual environment and install those dependencies before running the
+script:
 
 ```sh
-python3 dijkstra.py --help
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
 ```
 
-The script supports local paths, `file://` URIs, and `http://` or `https://`
-URLs using the Python standard library.
-
-For broader URI scheme support, install optional `fsspec`:
+Then verify the command-line interface:
 
 ```sh
-pip install fsspec
+python dijkstra.py --help
+```
+
+You can also build a Docker image:
+
+```sh
+docker build -t dijkstra .
+```
+
+Run the image by passing the same arguments you would pass to `dijkstra.py`:
+
+```sh
+docker run --rm -v "$PWD:/data" dijkstra /data/graph.json --source A
 ```
 
 ## How to use
